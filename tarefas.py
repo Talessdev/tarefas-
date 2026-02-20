@@ -13,52 +13,52 @@ def salvar(tarefas):
 
 def listar(tarefas):
     if not tarefas:
-        print("\n✅ Nenhuma tarefa cadastrada.\n")
+        print("\nNenhuma tarefa cadastrada.\n")
         return
-    print("\n📋 Suas tarefas:")
+    print("\nSuas tarefas:")
     for i, t in enumerate(tarefas, start=1):
-        status = "✅" if t["done"] else "⏳"
+        status = "[OK]" if t["done"] else "[..]"
         print(f"{i}. {status} {t['titulo']}")
     print()
 
 def adicionar(tarefas):
     titulo = input("Digite a tarefa: ").strip()
     if not titulo:
-        print("⚠️ Tarefa vazia.\n")
+        print("Tarefa vazia.\n")
         return
     tarefas.append({"titulo": titulo, "done": False})
     salvar(tarefas)
-    print("✅ Tarefa adicionada!\n")
+    print("Tarefa adicionada!\n")
 
 def concluir(tarefas):
     listar(tarefas)
     if not tarefas:
         return
     try:
-        n = int(input("Número da tarefa para concluir: "))
+        n = int(input("Numero da tarefa para concluir: "))
         if 1 <= n <= len(tarefas):
             tarefas[n-1]["done"] = True
             salvar(tarefas)
-            print("✅ Concluída!\n")
+            print("Concluida!\n")
         else:
-            print("⚠️ Número inválido.\n")
+            print("Numero invalido.\n")
     except ValueError:
-        print("⚠️ Digite um número.\n")
+        print("Digite um numero.\n")
 
 def remover(tarefas):
     listar(tarefas)
     if not tarefas:
         return
     try:
-        n = int(input("Número da tarefa para remover: "))
+        n = int(input("Numero da tarefa para remover: "))
         if 1 <= n <= len(tarefas):
             apagada = tarefas.pop(n-1)
             salvar(tarefas)
-            print(f"🗑️ Removida: {apagada['titulo']}\n")
+            print(f"Removida: {apagada['titulo']}\n")
         else:
-            print("⚠️ Número inválido.\n")
+            print("Numero invalido.\n")
     except ValueError:
-        print("⚠️ Digite um número.\n")
+        print("Digite um numero.\n")
 
 def menu():
     tarefas = carregar()
@@ -83,10 +83,10 @@ def menu():
             remover(tarefas)
             tarefas = carregar()
         elif op == "0":
-            print("Até mais!")
+            print("Ate mais!")
             break
         else:
-            print("⚠️ Opção inválida.\n")
+            print("Opcao invalida.\n")
 
 if __name__ == "__main__":
     menu()
